@@ -1,0 +1,4 @@
+# min	hour	day	month	weekday	command
+0,5,10,15,20,25,30,35,40,45,50,55 * * * * /usr/local/bin/overviewer.py --pid /tmp/maps_jungle.pid --config /home/miner/map_configs/jungle.py > /home/miner/logs/map_jungle.log
+1,6,11,16,21,26,31,36,41,46,51,56 * * * * /usr/local/bin/overviewer.py --pid /tmp/maps_fridge.pid --config /home/miner/map_configs/fridge.py > /home/miner/logs/map_fridge.log
+
