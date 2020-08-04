@@ -28,10 +28,12 @@ RUN /opt/overviewer/setup.py build
 FROM nginx:stable-alpine as final-stage
 
 RUN apk add --no-cache \
+	bash \
   busybox-suid \
   python3 \
   py3-numpy \
-  py3-pillow
+  py3-pillow \
+	vim
 
 COPY --from=install-stage /opt/overviewer/build/lib.linux-x86_64-3.8/overviewer_core /usr/lib/python3.8/site-packages/overviewer_core
 COPY --from=install-stage /opt/overviewer/build/scripts-3.8/overviewer.py /usr/local/bin/
