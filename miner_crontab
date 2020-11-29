@@ -3,11 +3,11 @@
 */20 * * * * /usr/local/bin/overviewer.py --genpoi --config /home/miner/map_configs/jungle.py > /home/miner/logs/poi_jungle.log
 */15 * * * * /usr/local/bin/overviewer.py --pid /tmp/maps_jungle.pid --config /home/miner/map_configs/jungle.py > /home/miner/logs/map_jungle.log
 
+# grand
+*/20 * * * * /usr/local/bin/overviewer.py --genpoi --config /home/miner/map_configs/grand.py > /home/miner/logs/poi_grand.log
+*/15 * * * * /usr/local/bin/overviewer.py --pid /tmp/maps_grand.pid --config /home/miner/map_configs/grand.py > /home/miner/logs/map_grand.log
+
 # dwarves
 */15 * * * * /usr/local/bin/overviewer.py --genpoi --config /home/miner/map_configs/dwarves.py > /home/miner/logs/poi_dwarves.log
 */20 * * * * /usr/local/bin/overviewer.py --pid /tmp/maps_dwarves.pid --config /home/miner/map_configs/dwarves.py > /home/miner/logs/map_dwarves.log
-
-# fridge
-# 1,16,31,46,51 * * * * /usr/local/bin/overviewer.py --pid /tmp/maps_fridge.pid --config /home/miner/map_configs/fridge.py > /home/miner/logs/map_fridge.log
-
 
