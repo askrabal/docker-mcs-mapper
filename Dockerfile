@@ -37,8 +37,7 @@ RUN apk add --no-cache \
 
 COPY --from=install-stage /opt/overviewer/build/lib.linux-x86_64-3.8/overviewer_core /usr/lib/python3.8/site-packages/overviewer_core
 COPY --from=install-stage /opt/overviewer/build/scripts-3.8/overviewer.py /usr/local/bin/
-RUN curl -L https://overviewer.org/textures/1.12 --create-dirs -o ~/.minecraft/versions/1.12/1.12.jar
-RUN curl -L https://overviewer.org/textures/1.15 --create-dirs -o ~/.minecraft/versions/1.15/1.15.jar
+RUN curl -L https://overviewer.org/textures/1.16 --create-dirs -o ~/.minecraft/versions/1.16/1.16.jar
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 ARG MINER_UID=1002
