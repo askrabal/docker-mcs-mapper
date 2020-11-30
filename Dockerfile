@@ -28,12 +28,13 @@ RUN /opt/overviewer/setup.py build
 FROM nginx:stable-alpine as final-stage
 
 RUN apk add --no-cache \
-	bash \
+  bash \
   busybox-suid \
-  python3 \
   py3-numpy \
   py3-pillow \
-	vim
+  python3 \
+  util-linux \
+  vim
 
 COPY --from=install-stage /opt/overviewer/build/lib.linux-x86_64-3.8/overviewer_core /usr/lib/python3.8/site-packages/overviewer_core
 COPY --from=install-stage /opt/overviewer/build/scripts-3.8/overviewer.py /usr/local/bin/
@@ -48,6 +49,7 @@ RUN addgroup nginx miner
 RUN mv ~/.minecraft ~miner/
 RUN mkdir -p /home/miner/logs
 RUN chown -R miner:miner /home/miner
+RUN echo "export EDITOR=vim" >> /home/miner/.bashrc
 
 RUN sed -i -e 15,23d /usr/share/nginx/html/index.html
 COPY miner_crontab /etc/crontabs/miner
