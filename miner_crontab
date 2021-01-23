@@ -1,4 +1,4 @@
 # min	hour	day	month	weekday	command
 # jungle
-*/5 * * * * /usr/bin/flock -n /tmp/maps.lock /home/miner/renderAllMaps.py
+*/5 * * * * /usr/bin/flock -n /tmp/maps.lock nice -n 5 /home/miner/renderAllMaps.py
 
