@@ -46,7 +46,8 @@ ARG MINER_UID=1002
 RUN adduser -Du ${MINER_UID} miner
 RUN addgroup miner www-data
 RUN addgroup nginx miner
-RUN mv ~/.minecraft ~miner/
+RUN mv ~/.minecraft /home/miner/
+COPY renderAllMaps.py /home/miner/
 RUN mkdir -p /home/miner/logs
 RUN chown -R miner:miner /home/miner
 RUN echo "export EDITOR=vim" >> /home/miner/.bashrc
