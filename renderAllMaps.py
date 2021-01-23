@@ -10,6 +10,9 @@ logs_dir.mkdir(exist_ok=True)
 
 for cfg in cfg_dir.iterdir():
     if cfg.is_file():
+        # read first kB of file for magic processing
+        with cfg.open('r') as fd:
+            first_k = fd.read(1024)
         # render maps step
         render_cmd = [overviewer, "--pid", f"/tmp/maps_{cfg.stem}.pid",
                       "--config", f"{cfg.absolute()}"]
@@ -17,6 +20,8 @@ for cfg in cfg_dir.iterdir():
         render_err = logs_dir / f"map_{cfg.stem}.err"
         with render_out.open('a') as fd_out, render_err.open('a') as fd_err:
             run(render_cmd, stdout=fd_out, stderr=fd_err)
+        if "##GENPOI##" not in first_k:
+            continue
         # genpoi step
         genpoi_cmd = [overviewer, "--genpoi", "--config", f"{cfg.absolute()}"]
         genpoi_out = logs_dir / f"poi_{cfg.stem}.log"
