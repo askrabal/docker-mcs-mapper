@@ -41,7 +41,7 @@ COPY --from=install-stage /opt/overviewer/build/scripts-3.*/overviewer.py /usr/l
 RUN curl -L https://overviewer.org/textures/1.16 --create-dirs -o ~/.minecraft/versions/1.16/1.16.jar
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
-ARG MINER_UID=1002
+ARG MINER_UID=25565
 
 RUN adduser -Du ${MINER_UID} miner
 RUN addgroup miner www-data
