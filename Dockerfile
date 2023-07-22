@@ -36,9 +36,10 @@ RUN apk add --no-cache \
   util-linux \
   vim
 
-COPY --from=install-stage /opt/overviewer/build/lib.linux-x86_64-3.*/overviewer_core /usr/lib/python3.8/site-packages/overviewer_core
+COPY --from=install-stage /opt/overviewer/build/lib.linux-x86_64-3.*/overviewer_core /usr/local/lib/python3/site-packages/overviewer_core
 COPY --from=install-stage /opt/overviewer/build/scripts-3.*/overviewer.py /usr/local/bin/
-RUN curl -L https://overviewer.org/textures/1.16 --create-dirs -o ~/.minecraft/versions/1.16/1.16.jar
+ARG MC_TEX_VER=1.19
+RUN curl -L https://overviewer.org/textures/${MC_TEX_VER} --create-dirs -o ~/.minecraft/versions/${MC_TEX_VER}/${MC_TEX_VER}.jar
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 ARG MINER_UID=25565
@@ -51,6 +52,7 @@ COPY renderAllMaps.py /home/miner/
 RUN mkdir -p /home/miner/logs
 RUN chown -R miner:miner /home/miner
 RUN echo "export EDITOR=vim" >> /home/miner/.bashrc
+RUN echo "export PYTHONPATH=/usr/local/lib/python3/site-packages" >> /home/miner/.bashrc
 
 RUN sed -i -e 15,23d /usr/share/nginx/html/index.html
 COPY miner_crontab /etc/crontabs/miner

@@ -24,4 +24,3 @@ for cfg in cfg_dir.iterdir():
         with genpoi_out.open('a') as fd_out, genpoi_err.open('a') as fd_err:
             run(genpoi_cmd, stdout=fd_out, stderr=fd_err)
 
-
